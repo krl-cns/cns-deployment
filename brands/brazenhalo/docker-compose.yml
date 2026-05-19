@@ -342,7 +342,7 @@ services:
       - db-logs:/var/log/mysql
     networks: *network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "--silent"]
       interval: 5s
       timeout: 5s
       retries: 20
