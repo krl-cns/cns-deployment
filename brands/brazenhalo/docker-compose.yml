@@ -115,8 +115,7 @@ services:
       - node
       - /home/frappe/frappe-bench/apps/frappe/socketio.js
     depends_on:
-      <<: *depends_configurator
-      <<: *depends_redis
+      <<: [*depends_configurator, *depends_redis]
     volumes: *volumes
     networks: *network
     healthcheck:
@@ -133,8 +132,7 @@ services:
       - bench
       - schedule
     depends_on:
-      <<: *depends_configurator
-      <<: *depends_redis
+      <<: [*depends_configurator, *depends_redis]
       backend:
         condition: service_healthy
         required: true
@@ -152,8 +150,7 @@ services:
     <<: *image
     command: ["bench", "worker", "--queue", "default"]
     depends_on:
-      <<: *depends_configurator
-      <<: *depends_redis
+      <<: [*depends_configurator, *depends_redis]
     volumes: *volumes
     networks: *network
     healthcheck:
@@ -167,8 +164,7 @@ services:
     <<: *image
     command: ["bench", "worker", "--queue", "short"]
     depends_on:
-      <<: *depends_configurator
-      <<: *depends_redis
+      <<: [*depends_configurator, *depends_redis]
     volumes: *volumes
     networks: *network
     healthcheck:
@@ -182,8 +178,7 @@ services:
     <<: *image
     command: ["bench", "worker", "--queue", "long"]
     depends_on:
-      <<: *depends_configurator
-      <<: *depends_redis
+      <<: [*depends_configurator, *depends_redis]
     volumes: *volumes
     networks: *network
     healthcheck:
